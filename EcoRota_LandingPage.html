@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRota Mobilidade Urbana Inteligente</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+      body { background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+      
+      /* Navbar */
+      nav { background-color: #0f766e; color: white; padding: 1rem 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+      nav h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; }
+      nav ul { display: flex; gap: 2rem; list-style: none; font-size: 0.95rem; }
+      nav ul li a { color: #ccfbf1; text-decoration: none; transition: 0.2s; }
+      nav ul li a:hover { color: white; }
+
+      /* Hero Section */
+      .hero { background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); color: white; padding: 5rem 8%; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+      .hero-text { flex: 1; min-width: 300px; max-width: 600px; }
+      .hero-text h2 { font-size: 2.6rem; line-height: 1.2; margin-bottom: 1.2rem; }
+      .hero-text p { font-size: 1.15rem; color: #ccfbf1; margin-bottom: 2rem; }
+      
+      /* Mockup de Tela na Landing Page */
+      .hero-mockup { flex: 1; min-width: 280px; max-width: 340px; background: #0f172a; border-radius: 30px; padding: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 4px solid #334155; }
+      .app-screen { background: #f8fafc; border-radius: 20px; overflow: hidden; color: #1e293b; font-size: 0.9rem; }
+      .app-header { background: #0f766e; color: white; padding: 1rem; text-align: center; font-weight: bold; font-size: 1rem; }
+      .app-body { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+      .route-card { background: white; padding: 12px; border-radius: 8px; border-left: 4px solid #0f766e; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+      .route-card.highlight { background: #ccfbf1; border-left-color: #0d9488; }
+      .route-title { font-weight: bold; color: #0f172a; font-size: 0.85rem; }
+      .route-info { font-size: 0.75rem; color: #475569; margin-top: 3px; }
+
+      /* Botões */
+      .btn { display: inline-block; background-color: #f59e0b; color: #0f172a; font-weight: bold; padding: 14px 28px; border-radius: 8px; text-decoration: none; transition: 0.2s; cursor: pointer; border: none; font-size: 1rem; box-shadow: 0 4px 12px rgba(245,158,11,0.3); }
+      .btn:hover { background-color: #d97706; transform: translateY(-1px); }
+
+      /* Seções */
+      .section { padding: 5rem 8%; max-width: 1200px; margin: 0 auto; }
+      .section-title { text-align: center; font-size: 2rem; margin-bottom: 0.8rem; color: #0f172a; }
+      .section-subtitle { text-align: center; color: #64748b; margin-bottom: 3.5rem; font-size: 1.05rem; }
+      
+      .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+      .card { background: white; padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border-top: 4px solid #0f766e; transition: 0.3s; }
+      .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+      .card h3 { margin-bottom: 1rem; color: #0f766e; font-size: 1.3rem; }
+      .card p { color: #475569; font-size: 0.95rem; }
+
+      /* Seção Interativa de Teste de Rota */
+      .simulator-box { background: #f1f5f9; border-radius: 16px; padding: 3rem 2rem; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #cbd5e1; }
+      .sim-controls { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+      .sim-controls input { flex: 1; min-width: 220px; padding: 12px 16px; border-radius: 8px; border: 1px solid #94a3b8; font-size: 1rem; outline: none; }
+      .sim-result { background: white; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #0f766e; display: none; }
+      .sim-result h4 { color: #0f766e; margin-bottom: 0.5rem; }
+
+      /* Estatísticas */
+      .stats { background-color: #0f172a; color: white; text-align: center; padding: 4rem 8%; }
+      .stats-grid { display: flex; justify-content: space-around; gap: 2rem; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+      .stat-item h4 { font-size: 2.8rem; color: #2dd4bf; margin-bottom: 0.5rem; }
+      .stat-item p { color: #94a3b8; font-size: 1rem; }
+
+      footer { background-color: #020617; color: #64748b; text-align: center; padding: 2.5rem; font-size: 0.9rem; }
+    </style>
+  </head>
+
+  <body>
+
+    <nav>
+      <h1>EcoRota</h1>
+      <ul>
+        <li><a href="#funcionalidades">Funcionalidades</a></li>
+        <li><a href="#simulador">Simulador</a></li>
+        <li><a href="#impacto">Impacto</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Mobilidade urbana inteligente para estudantes e trabalhadores.</h2>
+        <p>Transforme seus deslocamentos diários integrando transporte público, bikes e caronas verificadas em um só app. Ganhe tempo, economize dinheiro e acumule Créditos Verdes.</p>
+        <a href="#simulador" class="btn">Testar Simulador de Rotas</a>
+      </div>
+      
+      <!-- Mini App Mockup simulando a tela real -->
+      <div class="hero-mockup">
+        <div class="app-screen">
+          <div class="app-header">EcoRota • Mack / Centro</div>
+          <div class="app-body">
+            <div style="font-size: 0.8rem; font-weight: bold; color: #475569;">Melhores Opções Encontradas:</div>
+            <div class="route-card highlight">
+              <div class="route-title">🚴 Bike + 🚇 Metrô (Recomendado)</div>
+              <div class="route-info">32 min | R$ 5,00 | -1.8 kg CO₂ | +50 pts</div>
+            </div>
+            <div class="route-card">
+              <div class="route-title">👥 Carona Verificada (Campus)</div>
+              <div class="route-info">28 min | R$ 6,00 | -0.9 kg CO₂ | +25 pts</div>
+            </div>
+            <div class="route-card">
+              <div class="route-title">🚌 Ônibus Direto Integrado</div>
+              <div class="route-info">45 min | R$ 4,40 | -1.4 kg CO₂ | +40 pts</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="funcionalidades">
+      <h2 class="section-title">Como o EcoRota Resolve o Problema</h2>
+      <p class="section-subtitle">Desenvolvido com base em investigações reais sobre os gargalos do transporte pendular urbano.</p>
+      
+      <div class="grid-3">
+        <div class="card">
+          <h3>1. Planejamento Multimodal</h3>
+          <p>Elimina a fragmentação de informações combinando trens, ônibus, trechos a pé e ciclovias em uma única tela otimizada para tomada de decisão rápida.</p>
+        </div>
+        <div class="card">
+          <h3>2. Radar Colaborativo</h3>
+          <p>Comunidade acadêmica e corporativa unida: envie e receba alertas instantâneos sobre lotação, iluminação de vias e bloqueios em ciclovias com segurança garantida.</p>
+        </div>
+        <div class="card">
+          <h3>3. Carteira de Créditos Verdes</h3>
+          <p>Incentivo real: valide seus trajetos ecológicos via GPS e troque pontos acumulados por descontos na cantina, livraria ou créditos de transporte.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="simulador" style="background: #f8fafc; max-width: 100%; padding-left: 8%; padding-right: 8%;">
+      <div class="simulator-box">
+        <h2 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">Simule sua Rota Diária</h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem;">Veja como o algoritmo combina rapidez, custo e sustentabilidade.</p>
+        
+        <div class="sim-controls">
+          <input type="text" id="origem" placeholder="Ex: Av. Paulista (Casa)" value="Pinheiros">
+          <input type="text" id="destino" placeholder="Ex: Higienópolis (Campus)" value="Universidade / Trabalho">
+          <button class="btn" onclick="simularRota()" style="padding: 12px 24px;">Calcular Trajeto</button>
+        </div>
+
+        <div class="sim-result" id="resultadoSimulacao">
+          <h4>Rota Otimizada Calculada com Sucesso!</h4>
+          <p id="detalhesRota" style="color: #334155; font-size: 0.95rem; margin-top: 5px;"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" id="impacto">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h4>-25%</h4>
+          <p>Tempo médio perdido no trânsito</p>
+        </div>
+        <div class="stat-item">
+          <h4>R$ 140</h4>
+          <p>Economia financeira mensal por aluno</p>
+        </div>
+        <div class="stat-item">
+          <h4>-24 kg</h4>
+          <p>Emissões de CO₂ evitadas por usuário</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Projeto acadêmico desenvolvido sob a metodologia Challenge Based Learning (CBL) • Atividade Final (Módulo 3)</p>
+    </footer>
+
+    <script>
+      function simularRota() {
+        const orig = document.getElementById('origem').value || 'Sua Origem';
+        const dest = document.getElementById('destino').value || 'Seu Destino';
+        const res = document.getElementById('resultadoSimulacao');
+        const det = document.getElementById('detalhesRota');
+        
+        det.innerHTML = `<strong>Trajeto de ${orig} até ${dest}:</strong><br>• <strong>Melhor Combinação:</strong> Bicicleta (10 min) + Metrô Linha Amarela (18 min) + Caminhada (4 min).<br>• <strong>Tempo Total:</strong> 32 minutos (Economia de 18 min comparado ao carro).<br>• <strong>Custo:</strong> R$ 5,00 | <strong>Impacto:</strong> -1.8 kg de CO₂ e <strong>+50 Créditos Verdes</strong> gerados!`;
+        res.style.display = 'block';
+      }
+    </script>
+
+  </body>
+</html>
