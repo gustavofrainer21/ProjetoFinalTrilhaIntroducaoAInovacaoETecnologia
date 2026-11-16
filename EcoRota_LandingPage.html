@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRota Mobilidade Urbana Inteligente</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+      body { background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+      header { background-color: #0f766e; color: white; padding: 1.2rem 10%; display: flex; justify-content: space-between; align-items: center; }
+      header h1 { font-size: 1.5rem; letter-spacing: -0.5px; }
+      header span { font-size: 0.9rem; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; }
+      .hero { background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); color: white; text-align: center; padding: 4.5rem 10%; }
+      .hero h2 { font-size: 2.4rem; max-width: 720px; margin: 0 auto 1rem; line-height: 1.2; }
+      .hero p { font-size: 1.15rem; max-width: 620px; margin: 0 auto 2rem; color: #ccfbf1; }
+      .btn { display: inline-block; background-color: #f59e0b; color: #0f172a; font-weight: bold; padding: 14px 28px; border-radius: 8px; text-decoration: none; transition: 0.2s; cursor: pointer; border: none; font-size: 1rem; }
+      .btn:hover { background-color: #d97706; }
+      .section { padding: 4rem 10%; max-width: 1100px; margin: 0 auto; }
+      .section-title { text-align: center; font-size: 1.8rem; margin-bottom: 2.5rem; color: #0f172a; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; }
+      .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid #0f766e; }
+      .card h3 { margin-bottom: 0.8rem; color: #0f766e; font-size: 1.2rem; }
+      .stats { background-color: #e2e8f0; text-align: center; padding: 3rem 10%; }
+      .stats-grid { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+      .stat-box h4 { font-size: 2rem; color: #0f766e; }
+      .stat-box p { font-size: 0.95rem; color: #475569; }
+      footer { background-color: #0f172a; color: #94a3b8; text-align: center; padding: 2rem; font-size: 0.9rem; margin-top: 2rem; }
+      #demo-msg { display: none; margin-top: 1.5rem; background: #ccfbf1; color: #0f766e; padding: 1rem; border-radius: 8px; max-width: 500px; margin-left: auto; margin-right: auto; font-weight: 600; }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>EcoRota</h1>
+      <span>Protótipo Conceitual • CBL</span>
+    </header>
+
+    <section class="hero">
+      <h2>Deslocamentos diários mais rápidos, econômicos e sustentáveis.</h2>
+      <p>Integre ônibus, metrô, bicicleta e caronas verificadas da sua faculdade ou empresa em um único trajeto — e ganhe recompensas por reduzir emissões de CO₂.</p>
+      <button class="btn" onclick="document.getElementById('demo-msg').style.display='block'">Simular Acesso Institucional</button>
+      <div id="demo-msg">✓ Protótipo demonstrativo: O usuário acessaria com e-mail institucional para planejar rotas multimodais e acumular Créditos Verdes.</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Como o EcoRota Funciona</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>1. Planejamento Multimodal</h3>
+          <p>Informe sua origem e destino. O aplicativo combina transporte público, bike e caronas solidárias verificadas, comparando tempo, custo e CO₂ evitado.</p>
+        </div>
+        <div class="card">
+          <h3>2. Radar Colaborativo</h3>
+          <p>Receba e envie alertas em tempo real sobre lotação de veículos, atrasos, condições de iluminação nas ruas e bloqueios em ciclovias.</p>
+        </div>
+        <div class="card">
+          <h3>3. Créditos Verdes</h3>
+          <p>Cada trajeto sustentável concluído acumula pontos que podem ser trocados por descontos em cantinas universitárias, livrarias e créditos de transporte.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <h2 class="section-title" style="margin-bottom: 1.5rem;">Impacto Estimado no Dia a Dia</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <h4>-25%</h4>
+          <p>Tempo perdido no trânsito</p>
+        </div>
+        <div class="stat-box">
+          <h4>R$ 140/mês</h4>
+          <p>Economia média por estudante</p>
+        </div>
+        <div class="stat-box">
+          <h4>-24 kg CO₂</h4>
+          <p>Redução mensal por usuário ativo</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Protótipo desenvolvido para a Atividade Final (Módulo 3) – Challenge Based Learning (CBL)</p>
+    </footer>
+
+  </body>
+</html>
